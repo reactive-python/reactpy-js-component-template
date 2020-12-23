@@ -10,7 +10,7 @@ Use `pip` to install this package:
 pip install {{ cookiecutter.python_package_name }}
 ```
 
-For a developer installation from source:
+For a developer installation from source be sure to install [NPM](https://www.npmjs.com/) before running:
 
 ```bash
 git clone {{ cookiecutter.repository_url }}
