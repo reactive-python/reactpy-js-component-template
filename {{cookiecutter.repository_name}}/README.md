@@ -14,5 +14,6 @@ For a developer installation from source:
 
 ```bash
 git clone {{ cookiecutter.repository_url }}
+cd {{ cookiecutter.repository_name }}
 pip install -e . -r requirements.txt
 ```
