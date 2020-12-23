@@ -1,0 +1,9 @@
+
+default_context:
+  author_name: "Test author"
+  author_email: "test@email.com"
+  repository_name: "test-repo"
+  repository_url: "https://test.com"
+  python_package_name: "testpypkg"
+  npm_package_name: "testjspkg"
+  project_short_description: "A custom component library for IDOM"

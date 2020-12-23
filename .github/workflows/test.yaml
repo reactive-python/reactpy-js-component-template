@@ -1,0 +1,33 @@
+name: Test
+
+on:
+  push:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.7, 3.8, 3.9]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: nanasess/setup-chromedriver@master
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: "12"
+      - name: Use Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Create Repo From Template
+        run: |
+          pip install --upgrade pip
+          pip install cookiecutter
+          cookiecutter --config-file tests/test-config.yaml --no-input .
+      - name: Run Tests
+        run: |
+          pip install ./test-repo -r test-repo/requirements.txt
+          pytest test-repo/tests --headless

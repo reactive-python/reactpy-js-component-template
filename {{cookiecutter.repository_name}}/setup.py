@@ -12,7 +12,6 @@ name = "{{ cookiecutter.python_package_name }}"
 
 # basic paths used to gather files
 here = os.path.abspath(os.path.dirname(__file__))
-root = os.path.join(here, name)
 
 
 # -----------------------------------------------------------------------------
@@ -49,7 +48,7 @@ package = {
 # -----------------------------------------------------------------------------
 
 
-package["install_requires"] = ["idom>=0.15.0"]
+package["install_requires"] = ["idom>=0.16.0"]
 
 
 # -----------------------------------------------------------------------------
@@ -74,7 +73,7 @@ def build_javascript_first(cls):
         def run(self):
             for cmd_str in ["npm install", "npm run build"]:
                 subprocess.check_call(
-                    cmd_str.split(), cwd=os.path.join(root, "client", "app")
+                    cmd_str.split(), cwd=os.path.join(here, "js")
                 )
             super().run()
 

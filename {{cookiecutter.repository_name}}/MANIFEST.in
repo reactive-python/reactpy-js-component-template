@@ -1,0 +1,3 @@
+include README.md
+include {{ cookiecutter.python_package_name }}/bundle.js
+include LICENSE
