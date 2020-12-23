@@ -1,21 +1,24 @@
 from __future__ import print_function
 
+import os
+import subprocess
+import sys
+
 from setuptools import setup, find_packages
 from distutils.command.build import build  # type: ignore
 from distutils.command.sdist import sdist  # type: ignore
 from setuptools.command.develop import develop
-import os
-import subprocess
 
 # the name of the project
 name = "{{ cookiecutter.python_package_name }}"
 
 # basic paths used to gather files
 here = os.path.abspath(os.path.dirname(__file__))
+package_dir = os.path.join(here, name)
 
 
 # -----------------------------------------------------------------------------
-# Package Definition
+# General Package Info
 # -----------------------------------------------------------------------------
 
 
@@ -41,6 +44,20 @@ package = {
         "Programming Language :: Python :: 3.9",
     ],
 }
+
+
+# -----------------------------------------------------------------------------
+# Library Version
+# -----------------------------------------------------------------------------
+
+with open(os.path.join(package_dir, "__init__.py")) as init_file:
+    for line in init_file:
+        if line.split("=", 1)[0].strip() == "__version__":
+            package["version"] = eval(line.split("=", 1)[1])
+            break
+    else:
+        print("No version found in %s/__init__.py" % package_dir)
+        sys.exit(1)
 
 
 # -----------------------------------------------------------------------------

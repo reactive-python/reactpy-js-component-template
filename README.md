@@ -37,11 +37,38 @@ As the template is being constructed you will be prompted to fill out the follow
 | `repository_url`            | the URL your repository can be found at                                             |
 | `python_package_name`       | the name of the "backend" Python package your Javascript components will be used in |
 | `npm_package_name`          | the name of the "frontend" Javascript package used by your Python package           |
-| `project_short_description` | a brief summary used to describe both Python and Javascript packages                |
+| `project_short_description` | a short summary used to describe both Python and Javascript packages                |
 
-After this you should find a new directory named after the given `repository_name`, the key contents of which are:
+After this you should find a new directory named after the given `repository_name`.
 
-| Directory                | Contents                                                                                          |
+# Template Manifest
+
+The template generates the following files:
+
+```
+├── {python_package_name}
+│   ├── __init__.py
+│   └── example.py
+├── js
+│   ├── src
+│   │   ├── index.js
+│   ├── package.json
+│   ├── README.md
+│   └── rollup.config.js
+├── tests
+│   ├── __init__.py
+│   ├── conftest.py
+│   └── test_example.py
+├── .gitignore
+├── MANIFEST.in
+├── README.md
+├── setup.cfg
+└── setup.py
+```
+
+The key consituents of the generated repository are briefly described below:
+
+| File/Directory           | Contents                                                                                          |
 | ------------------------ | ------------------------------------------------------------------------------------------------- |
 | `js/`                    | a bare-bones Javascript component that is bundled with [Rollup](https://rollupjs.org/)            |
 | `{python_package_name}/` | minimial code required to load the Javascript component                                           |
