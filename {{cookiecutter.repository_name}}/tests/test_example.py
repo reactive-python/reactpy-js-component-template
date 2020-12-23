@@ -8,7 +8,7 @@ def test_example_counter(driver, driver_wait_until, display):
 
     display(
         ExampleCounter(
-            on_change=count.set_current,
+            on_count_change=count.set_current,
             button_text="this is a test",
             button_id="test-button",
         )
