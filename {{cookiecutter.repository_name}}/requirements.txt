@@ -1,3 +1,4 @@
+twine
 pytest
 selenium
 idom[testing,sanic]

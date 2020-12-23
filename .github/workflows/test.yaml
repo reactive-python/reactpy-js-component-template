@@ -27,7 +27,10 @@ jobs:
           pip install --upgrade pip
           pip install cookiecutter
           cookiecutter --config-file tests/test-config.yaml --no-input .
+      - name: Install Generated Package
+        run: |
+          pip install ./test-repo
+          pip install -r ./test-repo/requirements.txt
       - name: Run Tests
         run: |
-          pip install ./test-repo -r test-repo/requirements.txt
-          pytest test-repo/tests --headless
+          pytest ./test-repo/tests --headless
