@@ -1,5 +1,6 @@
 import pytest
-from idom.testing import open_selenium_chrome_driver_and_display_context
+from idom.testing import create_mount_and_server, create_simple_selenium_web_driver
+from selenium.webdriver import ChromeOptions
 from selenium.webdriver.support.ui import WebDriverWait
 
 
@@ -13,6 +14,24 @@ def pytest_addoption(parser) -> None:
 
 
 @pytest.fixture
+def mount(mount_and_server):
+    with mount_and_server.mount() as mount:
+        yield mount
+
+
+@pytest.fixture(scope="session")
+def server(mount_and_server):
+    server = mount_and_server
+    yield server
+    server.stop()
+
+
+@pytest.fixture(scope="session")
+def mount_and_server():
+    return create_mount_and_server()
+
+
+@pytest.fixture
 def driver_wait_until(driver) -> WebDriverWait:
     """A :class:`WebDriverWait` object for the current web driver"""
 
@@ -22,23 +41,13 @@ def driver_wait_until(driver) -> WebDriverWait:
     return wait_until
 
 
-@pytest.fixture(scope="module")
-def driver(driver_and_display_context):
-    return driver_and_display_context[0]
-
-
-@pytest.fixture(scope="module")
-def display(driver_and_display_context):
-    with driver_and_display_context[1]() as display:
-        yield display
-
-
-@pytest.fixture(scope="module")
-def driver_and_display_context(driver_is_headless):
-    with open_selenium_chrome_driver_and_display_context(
-        headless=driver_is_headless
-    ) as dvr_and_disp_ctx:
-        yield dvr_and_disp_ctx
+@pytest.fixture(scope="session")
+def driver(driver_is_headless):
+    options = ChromeOptions()
+    options.headless = driver_is_headless
+    driver = create_simple_selenium_web_driver(driver_options=options)
+    yield driver
+    driver.quit()
 
 
 @pytest.fixture(scope="session")
