@@ -10,7 +10,7 @@ _js_module = idom.Module(
 
 
 def ExampleCounter(on_count_change, button_text, button_id):
-    return _js_module.ExampleComponent(
+    return _js_module.ExampleCounter(
         {
             "onCountChange": on_count_change,
             "buttonText": button_text,
