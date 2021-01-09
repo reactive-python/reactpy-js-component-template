@@ -29,7 +29,7 @@ def display(driver, server_mount_point):
 def server_mount_point():
     mount_point = ServerMountPoint()
     yield mount_point
-    mount_point.server.quit()
+    mount_point.server.stop()
 
 
 @pytest.fixture
