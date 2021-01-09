@@ -1,5 +1,8 @@
 import pytest
-from idom.testing import create_mount_and_server, create_simple_selenium_web_driver
+from idom.testing import (
+    create_simple_selenium_web_driver,
+    ServerMountPoint,
+)
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -14,21 +17,19 @@ def pytest_addoption(parser) -> None:
 
 
 @pytest.fixture
-def mount(mount_and_server):
-    with mount_and_server.mount() as mount:
-        yield mount
+def display(driver, server_mount_point):
+    with server_mount_point.open_mount_function() as mount:
+        def display(element_constructor):
+            mount(element_constructor)
+            driver.get(server_mount_point.url())
+        yield display
 
 
 @pytest.fixture(scope="session")
-def server(mount_and_server):
-    server = mount_and_server
-    yield server
-    server.stop()
-
-
-@pytest.fixture(scope="session")
-def mount_and_server():
-    return create_mount_and_server()
+def server_mount_point():
+    mount_point = ServerMountPoint()
+    yield mount_point
+    mount_point.server.quit()
 
 
 @pytest.fixture

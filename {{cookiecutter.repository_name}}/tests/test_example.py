@@ -3,10 +3,10 @@ import idom
 from {{ cookiecutter.python_package_name }} import ExampleCounter
 
 
-def test_example_counter(driver, driver_wait_until, mount):
+def test_example_counter(driver, driver_wait_until, display):
     count = idom.Ref(0)
 
-    mount(
+    display(
         lambda: ExampleCounter(
             on_count_change=count.set_current,
             button_text="this is a test",
