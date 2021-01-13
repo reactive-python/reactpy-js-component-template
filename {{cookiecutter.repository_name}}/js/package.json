@@ -1,5 +1,5 @@
 {
-  "name": "asd",
+  "name": "{{ cookiecutter.npm_package_name }}",
   "description": "{{ cookiecutter.project_short_description }}",
   "author": "{{ cookiecutter.author_name }}",
   "repository": {
