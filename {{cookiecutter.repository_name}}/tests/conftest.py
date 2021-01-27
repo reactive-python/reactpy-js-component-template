@@ -18,18 +18,16 @@ def pytest_addoption(parser) -> None:
 
 @pytest.fixture
 def display(driver, server_mount_point):
-    with server_mount_point.open_mount_function() as mount:
-        def display(element_constructor):
-            mount(element_constructor)
-            driver.get(server_mount_point.url())
-        yield display
+    def display(element_constructor):
+        server_mount_point.mount(element_constructor)
+        driver.get(server_mount_point.url())
+    return display
 
 
 @pytest.fixture(scope="session")
 def server_mount_point():
-    mount_point = ServerMountPoint()
-    yield mount_point
-    mount_point.server.stop()
+    with ServerMountPoint() as mount_point:
+        yield mount_point
 
 
 @pytest.fixture
