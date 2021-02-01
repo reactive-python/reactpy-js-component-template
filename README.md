@@ -24,7 +24,7 @@ pip install cookiecutter
 Then use this repostory template as a cookiecutter to initalize a repository:
 
 ```bash
-cookiecutter https://github.com/idom-team/idom-package-cookiecutter.git
+cookiecutter https://github.com/idom-team/idom-react-component-cookiecutter.git
 ```
 
 As the template is being constructed you will be prompted to fill out the following information:
