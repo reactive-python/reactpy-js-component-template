@@ -1,6 +1,10 @@
+# ⚠️ Warning ⚠️
+
+The interfaces used by this repository are provisional - breaking changes may occur at any time and without warning.
+
 # IDOM Package Cookiecutter
 
-![Test](https://github.com/idom-team/idom-package-cookiecutter/workflows/Test/badge.svg?branch=main) [![Gitter](https://badges.gitter.im/idom-team/idom.svg)](https://gitter.im/idom-team/idom?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+![Test](https://github.com/idom-team/idom-package-cookiecutter/workflows/Test/badge.svg?branch=main)
 
 A [`cookiecutter`](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) template for packaging Javascript components with IDOM
 
