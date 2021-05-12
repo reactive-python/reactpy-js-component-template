@@ -5,7 +5,8 @@ import idom
 
 _js_module = idom.Module(
     "{{ cookiecutter.npm_package_name }}",
-    source_file=Path(__file__).parent / "bundle.js"
+    source_file=Path(__file__).parent / "bundle.js",
+    has_mount=True,
 )
 
 
