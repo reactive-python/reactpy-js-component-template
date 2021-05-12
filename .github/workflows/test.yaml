@@ -11,7 +11,6 @@ jobs:
     strategy:
       matrix:
         python-version: [3.7, 3.8, 3.9]
-
     steps:
       - uses: actions/checkout@v2
       - uses: nanasess/setup-chromedriver@master
@@ -31,6 +30,10 @@ jobs:
         run: |
           pip install ./test-repo
           pip install -r ./test-repo/requirements.txt
+      - name: Install IDOM From Repo HEAD
+        run: |
+          git clone https://github.com/idom-team/idom.git
+          pip install ./idom[testing,stable]
       - name: Run Tests
         run: |
           pytest ./test-repo/tests --headless --import-mode=importlib

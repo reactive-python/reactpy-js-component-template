@@ -1,4 +1,4 @@
 twine
 pytest
 selenium
-idom[testing,sanic]
+idom[testing,stable]
