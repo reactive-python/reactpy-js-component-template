@@ -4,8 +4,8 @@ import htm from "htm";
 
 const html = htm.bind(react.createElement);
 
-export function mount(element, component, props, children) {
-  reactDOM.render(react.createElement(component, props, ...children), element);
+export function mount(element, component, props) {
+  reactDOM.render(html`<${component} ...${props} />`, element);
 }
 
 export function ExampleCounter(props) {
