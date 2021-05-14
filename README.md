@@ -1,7 +1,3 @@
-# ⚠️ Warning ⚠️
-
-The interfaces used by this repository are provisional - breaking changes may occur at any time and without warning.
-
 # IDOM Package Cookiecutter
 
 ![Test](https://github.com/idom-team/idom-package-cookiecutter/workflows/Test/badge.svg?branch=main)
