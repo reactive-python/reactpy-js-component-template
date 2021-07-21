@@ -29,7 +29,7 @@ To release a new version of {{ cookiecutter.python_package_name }} on PyPI:
 5. Check the build artifacts `twine check --strict dist/*`
 6. Upload the build artifacts to [PyPI](https://pypi.org/) `twine upload dist/*`
 
-To release a new version of {{ cookiecutter.npm_package_name }} on [NPM](https://www.npmjs.com/):
+To release a new version of `{{ cookiecutter.npm_package_name }}` on [NPM](https://www.npmjs.com/):
 
 1. Update `js/package.json` with new npm package version
 2. Clean out prior builds `git clean -fdx`
