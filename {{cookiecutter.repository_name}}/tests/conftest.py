@@ -21,6 +21,7 @@ def display(driver, server_mount_point):
     def display(element_constructor):
         server_mount_point.mount(element_constructor)
         driver.get(server_mount_point.url())
+
     return display
 
 

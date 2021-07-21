@@ -1,6 +1,6 @@
 import idom
 
-from {{ cookiecutter.python_package_name }} import ExampleCounter
+from {{ cookiecutter.python_package_name }}.example import ExampleCounter
 
 
 def test_example_counter(driver, driver_wait_until, display):
