@@ -1,20 +1,22 @@
 from pathlib import Path
 
-import idom
+from idom.web.module import export, module_from_file
 
 
-_js_module = idom.Module(
+_js_module = module_from_file(
     "{{ cookiecutter.npm_package_name }}",
-    source_file=Path(__file__).parent / "bundle.js",
-    has_mount=True,
+    file=Path(__file__).parent / "bundle.js",
+    fallback="⏳",
 )
+
+_ExampleCounter = export(_js_module, "ExampleCounter")
 
 
 def ExampleCounter(on_count_change, button_text, button_id):
-    return _js_module.ExampleCounter(
+    return _ExampleCounter(
         {
             "onCountChange": on_count_change,
             "buttonText": button_text,
-            "buttonId": button_id
+            "buttonId": button_id,
         }
     )

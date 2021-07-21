@@ -2,11 +2,12 @@ import react from "react";
 import reactDOM from "react-dom";
 import htm from "htm";
 
-const html = htm.bind(react.createElement);
+export const createElement = (component, props) =>
+  react.createElement(component, props);
+export const renderElement = reactDOM.render;
+export const unmountElement = reactDOM.unmountComponentAtNode;
 
-export function mount(element, component, props) {
-  reactDOM.render(html`<${component} ...${props} />`, element);
-}
+const html = htm.bind(react.createElement);
 
 export function ExampleCounter(props) {
   const [count, setCount] = react.useState(0);

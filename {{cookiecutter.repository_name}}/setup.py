@@ -89,9 +89,7 @@ def build_javascript_first(cls):
     class Command(cls):
         def run(self):
             for cmd_str in ["npm install", "npm run build"]:
-                subprocess.check_call(
-                    cmd_str.split(), cwd=os.path.join(here, "js")
-                )
+                subprocess.check_call(cmd_str.split(), cwd=os.path.join(here, "js"))
             super().run()
 
     return Command
