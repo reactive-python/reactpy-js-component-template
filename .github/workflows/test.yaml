@@ -17,6 +17,10 @@ jobs:
       - uses: actions/setup-node@v2-beta
         with:
           node-version: "12"
+      - name: Install latest NPM
+        run: |
+          npm install -g npm@latest
+          npm --version
       - name: Use Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
