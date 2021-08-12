@@ -1,16 +1,19 @@
-import react from "react";
-import reactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
 import htm from "htm";
 
-export const createElement = (component, props) =>
-  react.createElement(component, props);
-export const renderElement = reactDOM.render;
-export const unmountElement = reactDOM.unmountComponentAtNode;
+const html = htm.bind(React.createElement);
 
-const html = htm.bind(react.createElement);
+export function bind(node, config) {
+  return {
+    create: (type, props, children) => React.createElement(type, props, ...children),
+    render: (element) => ReactDOM.render(element, node),
+    unmount: () => ReactDOM.unmountComponentAtNode(node),
+  }
+}
 
 export function ExampleCounter(props) {
-  const [count, setCount] = react.useState(0);
+  const [count, setCount] = React.useState(0);
 
   const updateCount = () => {
     const newCount = count + 1;
@@ -19,7 +22,9 @@ export function ExampleCounter(props) {
   };
 
   return html`<div>
-    <button id=${props.buttonId} onClick=${updateCount}>${props.buttonText}</button>
+    <button id=${props.buttonId} onClick=${updateCount}>
+      ${props.buttonText}
+    </button>
     <p>current count is: ${count}</p>
   </div>`;
 }

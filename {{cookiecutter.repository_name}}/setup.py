@@ -25,6 +25,7 @@ package_dir = os.path.join(here, name)
 package = {
     "name": name,
     "python_requires": ">=3.7",
+    "install_requires": ["idom>=0.33.1"],
     "packages": find_packages(exclude=["tests*"]),
     "description": "{{ cookiecutter.project_short_description }}",
     "author": "{{ cookiecutter.author_name }}",
@@ -60,14 +61,6 @@ with open(os.path.join(package_dir, "__init__.py")) as init_file:
     else:
         print("No version found in %s/__init__.py" % package_dir)
         sys.exit(1)
-
-
-# -----------------------------------------------------------------------------
-# Requirements
-# -----------------------------------------------------------------------------
-
-
-package["install_requires"] = ["idom>=0.22.0"]
 
 
 # -----------------------------------------------------------------------------
