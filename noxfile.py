@@ -9,27 +9,19 @@ from nox import Session, session
 
 
 HERE = Path(__file__).parent
+TEMPLATE_DIR = HERE / "{{cookiecutter.repository_name}}"
 
 SessionFunc = Callable[[Session], None]
 
 
 def build_test_repo(install: bool = True) -> Callable[[SessionFunc], SessionFunc]:
+    """Build a test repo from test-config.yaml before a session"""
 
     def decorator(session_func: SessionFunc) -> SessionFunc:
-        # build a test repo from test-config.yaml
-
         @wraps(session_func)
         def wrapper(session: Session) -> None:
-            session.install("cookiecutter")
-
-            session.run("cookiecutter", "--config-file", "test-config.yaml", "--no-input", ".")
-            if install:
-                session.install("./test-repo")
-
-            try:
-                return session_func(session)
-            finally:
-                rmtree(HERE / "test-repo")
+            _build_test_repo(session, install)
+            return session_func(session)
 
         return wrapper
 
@@ -42,7 +34,9 @@ def install_latest_idom(session_func: SessionFunc) -> SessionFunc:
     @wraps(session_func)
     def wrapper(session: Session) -> None:
         try:
-            session.run("git", "clone", "https://github.com/idom-team/idom.git", external=True)
+            session.run(
+                "git", "clone", "https://github.com/idom-team/idom.git", external=True
+            )
             session.install("./idom[testing,stable]")
             session_func(session)
         finally:
@@ -64,7 +58,7 @@ def test(session: Session) -> None:
 @install_latest_idom
 def test_suite(session: Session) -> None:
     session.install("pytest")
-    session.run("pytest", "./test-repo/tests", "--headless", "--import-mode=importlib")
+    session.run("pytest", "./test-repo/tests", "--import-mode=importlib")
 
 
 @session
@@ -73,3 +67,23 @@ def test_style(session: Session) -> None:
     session.install("black", "flake8")
     session.run("black", "test-repo", "--check")
     session.run("flake8", "test-repo")
+
+
+def _build_test_repo(session: Session, install: bool) -> None:
+    # Need to remove node_modules so cookiecutter doesn't think since the cookiecutter
+    # will try to format those files if present
+    for path in TEMPLATE_DIR.rglob("node_modules"):
+        if path.is_dir():
+            rmtree(path)
+
+    session.install("cookiecutter")
+
+    if (HERE / "test-repo").exists():
+        # Run first so that after each test run you can inspect the generated template
+        # code to do some debugging. This also has the added benefit of being rebust
+        # against KeyboardInterrupt exceptions triggered by the user.
+        rmtree(HERE / "test-repo")
+
+    session.run("cookiecutter", "--config-file", "test-config.yaml", "--no-input", ".")
+    if install:
+        session.install("./test-repo")
