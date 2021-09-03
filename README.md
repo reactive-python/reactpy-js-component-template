@@ -73,3 +73,25 @@ The key consituents of the generated repository are briefly described below:
 | `js/`                    | a bare-bones Javascript component that is bundled with [Rollup](https://rollupjs.org/)            |
 | `{python_package_name}/` | minimial code required to load the Javascript component                                           |
 | `tests/`                 | a basic [`selenium`](https://selenium-python.readthedocs.io/)-based test suite for your component |
+
+# Run the Tests
+
+To run the tests for this repository you'll need the
+[ChromeDriver](https://chromedriver.chromium.org/downloads) in your `PATH`. Once that's
+done, simply `pip` install the requirements:
+
+```bash
+pip install -r requirements.txt
+```
+
+And run the `test` session with [Nox](https://nox.thea.codes/en/stable/):
+
+```bash
+nox -s test
+```
+
+To run in headless mode:
+
+```bash
+nox -s test -- --headless
+```
