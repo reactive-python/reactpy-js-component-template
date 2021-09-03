@@ -28,4 +28,4 @@ jobs:
       - name: Create Repo From Template
         run: |
           pip install nox
-          nox -s test
+          nox -s test -- --headless
