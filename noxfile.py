@@ -49,7 +49,7 @@ def install_latest_idom(session_func: SessionFunc) -> SessionFunc:
 
 @session
 def test(session: Session) -> None:
-    session.notify("test_suite")
+    session.notify("test_suite", posargs=session.posargs)
     session.notify("test_style")
 
 
@@ -58,14 +58,19 @@ def test(session: Session) -> None:
 @install_latest_idom
 def test_suite(session: Session) -> None:
     session.install("pytest")
-    session.run("pytest", "./test-repo/tests", "--import-mode=importlib")
+    session.run(
+        "pytest",
+        "./test-repo/tests",
+        "--import-mode=importlib",
+        *session.posargs,
+    )
 
 
 @session
 @build_test_repo(install=False)
 def test_style(session: Session) -> None:
     session.install("black", "flake8")
-    session.run("black", "test-repo", "--check")
+    session.run("black", "--check", "test-repo", *list(map(str, HERE.glob("*.py"))))
     session.run("flake8", "test-repo")
 
 
