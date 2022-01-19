@@ -1,6 +1,6 @@
 # --- JAVASCRIPT BUNDLES ---
 
-idom_plotly/bundle.js
+{{cookiecutter.python_package_name}}/bundle.js
 
 # --- PYTHON IGNORE FILES ----
 
