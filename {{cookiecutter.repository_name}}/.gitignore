@@ -1,4 +1,8 @@
-# --- PYTHON IGNORE FILES ---- 
+# --- JAVASCRIPT BUNDLES ---
+
+idom_plotly/bundle.js
+
+# --- PYTHON IGNORE FILES ----
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
