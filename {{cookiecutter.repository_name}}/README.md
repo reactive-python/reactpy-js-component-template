@@ -18,6 +18,31 @@ cd {{ cookiecutter.repository_name }}
 pip install -e . -r requirements.txt
 ```
 
+# Running the Tests
+
+To run the tests you'll need to install [Chrome](https://www.google.com/chrome/). Then you
+can download the [ChromeDriver](https://chromedriver.chromium.org/downloads) and add it to
+your `PATH`. Once that's done, simply `pip` install the requirements:
+
+```bash
+pip install -r requirements.txt
+```
+
+And run the tests with `pytest`:
+
+```bash
+pytest tests
+```
+
+You can run the tests in headless mode (i.e. without opening the browser):
+
+```bash
+pytest tests --headless
+```
+
+You'll need to run in headless mode to execute the suite in continuous integration systems
+like GitHub Actions. 
+
 # Releasing This Package
 
 To release a new version of {{ cookiecutter.python_package_name }} on PyPI:
