@@ -3,6 +3,7 @@ from __future__ import print_function
 import os
 import subprocess
 import sys
+import shutil
 
 from setuptools import setup, find_packages
 from distutils.command.build import build  # type: ignore
@@ -25,7 +26,7 @@ package_dir = os.path.join(here, name)
 package = {
     "name": name,
     "python_requires": ">=3.7",
-    "install_requires": ["idom>=0.33.1"],
+    "install_requires": ["idom>=0.38.1"],
     "packages": find_packages(exclude=["tests*"]),
     "description": "{{ cookiecutter.project_short_description }}",
     "author": "{{ cookiecutter.author_name }}",
@@ -83,7 +84,10 @@ package["long_description_content_type"] = "text/markdown"
 def build_javascript_first(cls):
     class Command(cls):
         def run(self):
-            for cmd_str in ["npm install", "npm run build"]:
+            npm = shutil.which("npm")  # this is required on windows
+            if npm is None:
+                raise RuntimeError("NPM is not installed.")
+            for cmd_str in [f"{npm} install", f"{npm} run build"]:
                 subprocess.check_call(cmd_str.split(), cwd=os.path.join(here, "js"))
             super().run()
 

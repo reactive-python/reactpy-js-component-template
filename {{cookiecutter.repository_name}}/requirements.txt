@@ -1,4 +1,4 @@
 twine
 pytest
-selenium
-idom[testing,stable]
+pytest-asyncio
+idom[testing,starlette]
