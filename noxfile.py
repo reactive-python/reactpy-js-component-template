@@ -37,7 +37,7 @@ def install_latest_idom(session_func: SessionFunc) -> SessionFunc:
             session.run(
                 "git", "clone", "https://github.com/idom-team/idom.git", external=True
             )
-            session.install("./idom[testing,stable]")
+            session.install("./idom[testing,starlette]")
             session_func(session)
         finally:
             idom_dir = HERE / "idom"
@@ -57,13 +57,9 @@ def test(session: Session) -> None:
 @build_test_repo()
 @install_latest_idom
 def test_suite(session: Session) -> None:
-    session.install("pytest")
-    session.run(
-        "pytest",
-        "./test-repo/tests",
-        "--import-mode=importlib",
-        *session.posargs,
-    )
+    session.chdir("test-repo")
+    session.run("playwright", "install", "chromium")
+    session.run("pytest", "tests", "--import-mode=importlib", *session.posargs)
 
 
 @session
@@ -91,4 +87,7 @@ def _build_test_repo(session: Session, install: bool) -> None:
 
     session.run("cookiecutter", "--config-file", "test-config.yaml", "--no-input", ".")
     if install:
-        session.install("./test-repo")
+        session.chdir("test-repo")
+        session.install(".")
+        session.install("-r", "requirements.txt")
+        session.chdir("..")

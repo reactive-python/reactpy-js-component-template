@@ -1,12 +1,13 @@
 import idom
+from idom.testing import poll
 
 from {{ cookiecutter.python_package_name }}.example import ExampleCounter
 
 
-def test_example_counter(driver, driver_wait_until, display):
+async def test_example_counter(display):
     count = idom.Ref(0)
 
-    display(
+    await display.show(
         lambda: ExampleCounter(
             on_count_change=count.set_current,
             button_text="this is a test",
@@ -14,10 +15,11 @@ def test_example_counter(driver, driver_wait_until, display):
         )
     )
 
-    client_side_button = driver.find_element_by_id("test-button")
+    client_side_button = await display.page.wait_for_selector("#test-button")
+    poll_count = poll(lambda: count.current)
 
-    client_side_button.click()
-    driver_wait_until(lambda: count.current == 1)
+    await client_side_button.click()
+    await poll_count.until_equals(1)
 
-    client_side_button.click()
-    driver_wait_until(lambda: count.current == 2)
+    await client_side_button.click()
+    await poll_count.until_equals(2)
