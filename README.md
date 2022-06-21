@@ -90,8 +90,8 @@ And run the `test` session with [Nox](https://nox.thea.codes/en/stable/):
 nox -s test
 ```
 
-To run in headless mode:
+To open the browser when the tests run:
 
 ```bash
-nox -s test -- --headless
+nox -s test
 ```
