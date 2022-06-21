@@ -1,6 +1,6 @@
 import pytest
 from playwright.async_api import async_playwright
-from idom.testing import DisplayFixture, ServerFixture, clear_idom_web_modules_dir
+from idom.testing import DisplayFixture, BackendFixture
 
 
 def pytest_addoption(parser) -> None:
@@ -20,7 +20,7 @@ async def display(server, browser):
 
 @pytest.fixture
 async def server():
-    async with ServerFixture() as server:
+    async with BackendFixture() as server:
         yield server
 
 
