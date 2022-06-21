@@ -26,7 +26,7 @@ package_dir = os.path.join(here, name)
 package = {
     "name": name,
     "python_requires": ">=3.7",
-    "install_requires": ["idom>=0.38.1"],
+    "install_requires": ["idom>=0.39.0"],
     "packages": find_packages(exclude=["tests*"]),
     "description": "{{ cookiecutter.project_short_description }}",
     "author": "{{ cookiecutter.author_name }}",

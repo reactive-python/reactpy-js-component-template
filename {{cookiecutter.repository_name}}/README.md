@@ -37,11 +37,11 @@ pytest tests
 You can run the tests in headless mode (i.e. without opening the browser):
 
 ```bash
-pytest tests --headless
+pytest tests
 ```
 
 You'll need to run in headless mode to execute the suite in continuous integration systems
-like GitHub Actions. 
+like GitHub Actions.
 
 # Releasing This Package
 
