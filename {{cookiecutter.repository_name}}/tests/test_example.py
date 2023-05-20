@@ -1,11 +1,11 @@
-import idom
-from idom.testing import poll
+import reactpy
+from reactpy.testing import poll
 
 from {{ cookiecutter.python_package_name }}.example import ExampleCounter
 
 
 async def test_example_counter(display):
-    count = idom.Ref(0)
+    count = reactpy.Ref(0)
 
     await display.show(
         lambda: ExampleCounter(

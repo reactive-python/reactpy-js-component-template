@@ -1,17 +1,17 @@
-# IDOM Package Cookiecutter
+# ReactPy Package Cookiecutter
 
-![Test](https://github.com/idom-team/idom-package-cookiecutter/workflows/Test/badge.svg?branch=main)
+![Test](https://github.com/reactive-python/reactpy-package-cookiecutter/workflows/Test/badge.svg?branch=main)
 
-A [`cookiecutter`](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) template for packaging Javascript components with IDOM
+A [`cookiecutter`](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) template for packaging Javascript components with ReactPy
 
-# About IDOM
+# About ReactPy
 
-IDOM is a framework for creating highly interactive web pages purely in Python. However,
-IDOM also provides a way to natively interface with the Javascript ecosystem. This
+ReactPy is a framework for creating highly interactive web pages purely in Python. However,
+ReactPy also provides a way to natively interface with the Javascript ecosystem. This
 repository defines a basic template for creating packages wich distribute Javascript for
-use in IDOM-based applications.
+use in ReactPy-based applications.
 
-For more information about IDOM refer to its [documentation](https://idom-docs.herokuapp.com/docs/index.html).
+For more information about ReactPy refer to its [documentation](https://reactpy-docs.herokuapp.com/docs/index.html).
 
 # Usage
 
@@ -24,7 +24,7 @@ pip install cookiecutter
 Then use this repostory template as a cookiecutter to initalize a repository:
 
 ```bash
-cookiecutter https://github.com/idom-team/idom-react-component-cookiecutter.git
+cookiecutter https://github.com/reactive-python/reactpy-react-component-cookiecutter.git
 ```
 
 As the template is being constructed you will be prompted to fill out the following information:

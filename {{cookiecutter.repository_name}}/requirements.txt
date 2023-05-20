@@ -1,4 +1,4 @@
 twine
 pytest
 pytest-asyncio
-idom[testing,starlette]
+reactpy[testing,starlette]

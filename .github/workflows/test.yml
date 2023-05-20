@@ -13,17 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v2
-      - uses: nanasess/setup-chromedriver@master
       - uses: actions/setup-node@v2-beta
         with:
-          node-version: "12"
-      - name: Install latest NPM
-        run: |
-          npm install -g npm@latest
-          npm --version
+          node-version: "14"
+      - name: install NPM version
+        run: npm install -g npm@8.19.3
       - name: Use Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
@@ -31,4 +28,4 @@ jobs:
       - name: Create Repo From Template
         run: |
           pip install nox
-          nox -s test
+          nox -t test

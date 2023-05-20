@@ -26,14 +26,14 @@ package_dir = os.path.join(here, name)
 package = {
     "name": name,
     "python_requires": ">=3.7",
-    "install_requires": ["idom>=0.39.0"],
+    "install_requires": ["reactpy>=0.39.0"],
     "packages": find_packages(exclude=["tests*"]),
     "description": "{{ cookiecutter.project_short_description }}",
     "author": "{{ cookiecutter.author_name }}",
     "author_email": "{{ cookiecutter.author_email }}",
     "url": "{{ cookiecutter.repository_url }}",
     "platforms": "Linux, Mac OS X, Windows",
-    "keywords": ["idom", "components"],
+    "keywords": ["reactpy", "components"],
     "include_package_data": True,
     "zip_safe": False,
     "classifiers": [
