@@ -28,21 +28,24 @@ def build_test_repo(install: bool = True) -> Callable[[SessionFunc], SessionFunc
     return decorator
 
 
-def install_latest_idom(session_func: SessionFunc) -> SessionFunc:
-    # install the latest version of IDOM by pulling it from the main repo
+def install_latest_reactpy(session_func: SessionFunc) -> SessionFunc:
+    # install the latest version of ReactPy by pulling it from the main repo
 
     @wraps(session_func)
     def wrapper(session: Session) -> None:
         try:
             session.run(
-                "git", "clone", "https://github.com/idom-team/idom.git", external=True
+                "git",
+                "clone",
+                "https://github.com/reactive-python/reactpy.git",
+                external=True,
             )
-            session.install("./idom[testing,starlette]")
+            session.install("./reactpy[testing,starlette]")
             session_func(session)
         finally:
-            idom_dir = HERE / "idom"
-            if idom_dir.exists():
-                rmtree(idom_dir)
+            reactpy_dir = HERE / "reactpy"
+            if reactpy_dir.exists():
+                rmtree(reactpy_dir)
 
     return wrapper
 
@@ -55,7 +58,7 @@ def test(session: Session) -> None:
 
 @session
 @build_test_repo()
-@install_latest_idom
+@install_latest_reactpy
 def test_suite(session: Session) -> None:
     session.chdir("test-repo")
     session.run("playwright", "install", "chromium")

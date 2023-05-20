@@ -6,4 +6,4 @@ default_context:
   repository_url: "https://test.com"
   python_package_name: "testpypkg"
   npm_package_name: "testjspkg"
-  project_short_description: "A custom component library for IDOM"
+  project_short_description: "A custom component library for ReactPy"

@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from idom.web.module import export, module_from_file
+from reactpy.web.module import export, module_from_file
 
 
 _js_module = module_from_file(

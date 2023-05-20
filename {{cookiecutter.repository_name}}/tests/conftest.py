@@ -1,6 +1,6 @@
 import pytest
 from playwright.async_api import async_playwright
-from idom.testing import DisplayFixture, BackendFixture
+from reactpy.testing import DisplayFixture, BackendFixture
 
 
 def pytest_addoption(parser) -> None:
