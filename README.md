@@ -1,6 +1,6 @@
 # ReactPy Package Cookiecutter
 
-![Test](https://github.com/reactive-python/reactpy-package-cookiecutter/workflows/Test/badge.svg?branch=main)
+![Test](https://github.com/reactive-python/reactpy-js-component-template/workflows/Test/badge.svg?branch=main)
 
 A [`cookiecutter`](https://cookiecutter.readthedocs.io/en/1.7.2/README.html) template for packaging Javascript components with ReactPy
 
